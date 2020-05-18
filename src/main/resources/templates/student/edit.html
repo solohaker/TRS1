@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{common/masterlayout}">
+<head>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/homepage/index.css}" />
+<title>Student Registration - Edit Student</title>
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<form id="productRegForm" method="post" action="/students/edit"
+			th:object="${student}">
+			<fieldset>
+				<legend>Edit Student Form</legend>
+				<input type="hidden" name="studentId"
+					th:value="${student.studentId}" />
+
+		<!--  		<div class="form-group">
+					<label for="productNumber">Product Number</label> <span
+						th:if="${#fields.hasErrors('productNumber')}"
+						th:errors="*{productNumber}" class="alert alert-danger"> </span> <input
+						id="productNumber" name="productNumber" type="text"
+						class="form-control" th:value="${product.productNumber}">
+				</div>
+
+
+-->
+
+
+
+				<div class="form-group">
+					<label for="firstName">First Name</label> <span
+						th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+						class="alert alert-danger"></span> <input id="firstName" name="firstName"
+						type="text" class="form-control" th:value="${student.firstName}">
+				</div>
+
+
+	<div class="form-group">
+					<label for="lastName">Last Name</label> <span
+						th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+						class="alert alert-danger"></span> <input id="lastName" name="lastName"
+						type="text" class="form-control" th:value="${student.lastName}">
+				</div>
+
+
+
+				<div style="float: right;">
+					<a href="/students/list" class="btn btn-outline-warning">Cancel</a>&nbsp;&nbsp;&nbsp;
+					<button id="btnSubmit" type="submit"
+						class="btn btn-outline-success">Save Changes</button>
+				</div>
+
+			</fieldset>
+		</form>
+	</th:block>
+	<th:block layout:fragment="footer"></th:block>
+</body>
+</html>

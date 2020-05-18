@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{common/masterlayout}">
+<head>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/homepage/index.css}" />
+	
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+	
+<title>Student Registration - Browse List of Students</title>
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<div>
+			<span style="font-size: 1.5em">List of Students</span> <span
+				style="float: right;"> <a
+				class="btn btn-outline-success btn-lg" href="/students/new">
+				<i class="fas fa-user-plus ml-2"></i>&nbsp; Register
+					New Student</a>
+			</span>
+		</div>
+		<p>&nbsp;</p>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">First Name</th>
+					<th scope="col">Last Name</th>
+					<th scope="col">Courses taken</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="student,iterStat : ${students}" 
+				th:onclick="@{document.location='/students/edit/{id}'(id=${student.studentId})}">
+					<th scope="row" th:text="${iterStat.count}"></th>
+					<td th:text="${student.firstName}"></td>
+					<td th:text="${student.lastName}"></td>
+					 <td>
+        <span th:each="course,iterStat : ${student.courses}">
+        <span th:text="${course.title}"/><th:block th:if="${!iterStat.last}">,</th:block>
+        </span>    		
+    </td>
+					
+					
+			
+			
+			<td><a th:href="@{#}" class="btn btn-outline-success">
+					
+					 <i class="fas fa-user-plus ml-1"></i>Add Course</a> </td>	
+					<td><a th:href="@{/students/delete/__${student.studentId}__}" class="btn btn-outline-danger">
+					
+					 <i class="fas fa-user-times ml-1"></i> Delete</a> </td>	
+					 			
+				
+				
+				  
+				
+				
+				</tr>
+			</tbody>
+		</table>
+	</th:block>
+
+	<th:block layout:fragment="footer"></th:block>
+	<!-- <tr th:each = "student : ${students}">
+    <td th:text="${student.firstName} + ' ' + ${student.lastName}"></td>
+    <td th:text="${student.email}"></td>
+    <td th:text="${student.department}"></td>
+    <td>
+        <span th:each="course,iterStat : ${student.courses}">
+        <span th:text="${course.name}"/><th:block th:if="${!iterStat.last}">,</th:block>
+        </span>    		
+    </td>
+    <td>
+        <a th:href="@{/addStudentCourse/{id}(id=${student.id})}" class="btn btn-success btn-xs">Add Course</a>
+        <a th:href="@{/delete/{id}(id=${student.id})}" class="btn btn-danger btn-xs">Delete</a>
+    </td>
+</tr> -->
+
+</body>
+</html>

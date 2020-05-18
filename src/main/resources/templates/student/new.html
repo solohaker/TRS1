@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{common/masterlayout}">
+<head>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/homepage/index.css}" />
+<title>Student Registration - New Student</title>
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<form id="productRegForm" method="post" action="/students/new"
+			th:object="${student}">
+			<fieldset>
+				<legend>New Student Registration Form</legend>
+				<input type="hidden" name="studentId"
+					th:value="${student.studentId}" />
+
+	
+				<div class="form-group">
+					<label for="firstName">First Name</label> <span
+						th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+						class="alert alert-danger"></span> <input id="firstName" name="firstName"
+						type="text" class="form-control" th:value="${student.firstName}">
+				</div>
+				
+				
+				<div class="form-group">
+					<label for="LastName">Last Name</label> <span
+						th:if="${#fields.hasErrors('LastName')}" th:errors="*{LastName}"
+						class="alert alert-danger"></span> <input id="LastName" name="LastName"
+						type="text" class="form-control" th:value="${student.LastName}">
+				</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			
+				<div style="float: right;">
+					<a href="/students/list" class="btn btn-outline-warning">Cancel</a>&nbsp;&nbsp;&nbsp;
+					<button id="btnSubmit" type="submit"
+						class="btn btn-outline-success">Register Student</button>
+				</div>
+
+			</fieldset>
+		</form>
+	</th:block>
+	<th:block layout:fragment="footer"></th:block>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{common/masterlayout}">
+<head>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/homepage/index.css}" />
+<title>Student Searching - Browse List of Students</title>
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<div>
+			<span style="font-size: 1.5em">List of Students</span> <span
+				style="float: right;"> <a
+				class="btn btn-outline-success btn-lg" href="/students/new">Register
+					New Student</a>
+			</span>
+		</div>
+		<p>&nbsp;</p>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">First Name</th>
+					<th scope="col">Last Name</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="student,iterStat : ${students}" 
+				th:onclick="@{document.location='/students/find/{id}'(id=${student.id})}">
+					<th scope="row" th:text="${iterStat.count}"></th>
+					<td th:text="${student.firstName}"></td>
+					<td th:text="${student.lastName}"></td>
+					<td><a th:href="@{/students/delete/__${student.id}__}" class="btn btn-outline-danger">Delete</a></td>				
+				</tr>
+			</tbody>
+		</table>
+	</th:block>
+
+	<th:block layout:fragment="footer"></th:block>
+
+</body>
+</html>

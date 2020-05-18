@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{common/masterlayout}">
+<head>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/homepage/index.css}" />
+<title>Student Registration - Edit Student</title>
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<form id="courseRegForm" method="post" action="/courses/edit"
+			th:object="${course}">
+			<fieldset>
+				<legend>Edit Courses Form</legend>
+				<input type="hidden" name="courseId"
+					th:value="${course.courseId}" />
+
+	
+
+
+
+				<div class="form-group">
+					<label for="title">Course Title</label> <span
+						th:if="${#fields.hasErrors('title')}" th:errors="*{title}"
+						class="alert alert-danger"></span> <input id="title" name="title"
+						type="text" class="form-control" th:value="${course.title}">
+				</div>
+
+
+	<div class="form-group">
+					<label for="duration">course Duration in Days</label> <span
+						th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}"
+						class="alert alert-danger"></span> <input id="duration" name="duration"
+						type="text" class="form-control" th:value="${course.duration}">
+				</div>
+
+
+
+				<div style="float: right;">
+					<a href="/courses/list" class="btn btn-outline-warning">Cancel</a>&nbsp;&nbsp;&nbsp;
+					<button id="btnSubmit" type="submit"
+						class="btn btn-outline-success"> Save Changes</button>
+				</div>
+
+
+
+ 
+
+
+
+
+
+
+
+
+			</fieldset>
+		</form>
+	</th:block>
+	<th:block layout:fragment="footer"></th:block>
+</body>
+</html>
